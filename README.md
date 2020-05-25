@@ -9,12 +9,13 @@ Login IP：192.168.1.1
 Password：None
 
 ### Version Informations:
-Other modules：SNAPSHOT（The day of the latest action）
 
-LUCI version：19.07（The day of the latest action）
+The Latest Edition of Snapshot （The day of the latest action）
+
+LuCI version：19.07
 
 ### Feature：
-1.O3, Ofast
+1.O3
 
 2.SSRP ONLY
 
