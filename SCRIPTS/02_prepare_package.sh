@@ -5,8 +5,13 @@ wget https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/feeds.conf.
 #remove annoying snapshot tag
 sed -i 's,SNAPSHOT,,g' include/version.mk
 sed -i 's,snapshots,,g' package/base-files/image-config.in
+#测试替换kernel_config
+#cat ../SEED/config-5.4.test > target/linux/rockchip/armv8/config-5.4
 #更新feed
 ./scripts/feeds update -a && ./scripts/feeds install -a
+#GCC
+#rm -rf ./feeds/packages/devel/gcc
+#svn co https://github.com/openwrt/packages/trunk/devel/gcc feeds/packages/devel/gcc
 #fix bd issue
 #beardropper
 git clone https://github.com/NateLol/luci-app-beardropper package/luci-app-beardropper
@@ -76,9 +81,9 @@ rm -rf ./feeds/packages/net/kcptun
 rm -rf ./feeds/packages/net/shadowsocks-libev
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shadowsocksr-libev package/lean/shadowsocksr-libev
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/pdnsd-alt package/lean/pdnsd
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray package/lean/v2ray
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray package/lean/v2ray
 svn co https://github.com/nicksun98/lede/trunk/package/lean/v2ray package/lean/v2ray
-#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/kcptun package/lean/kcptun
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/kcptun package/lean/kcptun
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray-plugin package/lean/v2ray-plugin
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/microsocks package/lean/microsocks
