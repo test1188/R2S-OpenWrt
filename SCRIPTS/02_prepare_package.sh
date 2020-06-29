@@ -46,6 +46,8 @@ popd
 #更换GCC版本
 #rm -rf ./feeds/packages/devel/gcc
 #svn co https://github.com/openwrt/packages/trunk/devel/gcc feeds/packages/devel/gcc
+#oled
+#git clone -b master --single-branch https://github.com/NateLol/luci-app-oled package/luci-app-oled
 #beardropper
 #git clone https://github.com/NateLol/luci-app-beardropper package/luci-app-beardropper
 #sed -i 's/"luci.fs"/"luci.sys".net/g' package/luci-app-beardropper/luasrc/model/cbi/beardropper/setting.lua
