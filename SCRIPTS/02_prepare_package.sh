@@ -46,12 +46,13 @@ popd
 #更换GCC版本
 #rm -rf ./feeds/packages/devel/gcc
 #svn co https://github.com/openwrt/packages/trunk/devel/gcc feeds/packages/devel/gcc
-#oled
-#git clone -b master --single-branch https://github.com/NateLol/luci-app-oled package/luci-app-oled
 #beardropper
 #git clone https://github.com/NateLol/luci-app-beardropper package/luci-app-beardropper
 #sed -i 's/"luci.fs"/"luci.sys".net/g' package/luci-app-beardropper/luasrc/model/cbi/beardropper/setting.lua
 #sed -i '/firewall/d' package/luci-app-beardropper/root/etc/uci-defaults/luci-beardropper
+#JD
+git clone https://github.com/jerrykuku/node-request package/new/node-request
+git clone https://github.com/jerrykuku/luci-app-jd-dailybonus package/new/luci-app-jd-dailybonus
 #arpbind
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-arpbind package/lean/luci-app-arpbind
 #Adbyby
@@ -79,6 +80,8 @@ sed -i 's,-DMULTIT,-Ofast -DMULTIT,g' package/lean/coremark/Makefile
 #svn co https://github.com/openwrt/luci/branches/openwrt-18.06/applications/luci-app-ddns feeds/luci/applications/luci-app-ddns
 #Pandownload
 #svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/lean/pandownload-fake-server package/lean/pandownload-fake-server
+#oled
+#git clone -b master --single-branch https://github.com/NateLol/luci-app-oled package/luci-app-oled
 #网易云解锁
 #git clone -b master --single-branch https://github.com/project-openwrt/luci-app-unblockneteasemusic package/new/UnblockNeteaseMusic
 #定时重启
