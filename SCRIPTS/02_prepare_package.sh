@@ -16,6 +16,8 @@ sed -i 's/O2/O3/g' ./rules.mk
 sed -i 's/0/1/g' feeds/packages/utils/irqbalance/files/irqbalance.config
 
 ##必要的patch
+wget -P include/ https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/include/scons.mk
+##必要的patch
 #patch jsonc
 patch -p1 < ../PATCH/use_json_object_new_int64.patch
 #patch dnsmasq
@@ -87,7 +89,7 @@ git clone -b master --single-branch https://github.com/project-openwrt/luci-app-
 #定时重启
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot package/lean/luci-app-autoreboot
 #argon主题
-git clone -b master --single-branch https://github.com/jerrykuku/luci-theme-argon package/new/luci-theme-argon
+#git clone -b master --single-branch https://github.com/jerrykuku/luci-theme-argon package/new/luci-theme-argon
 #AdGuard
 #git clone -b master --single-branch https://github.com/rufengsuixing/luci-app-adguardhome package/new/luci-app-adguardhome
 #SSRP
@@ -169,10 +171,8 @@ git clone -b master --single-branch https://github.com/QiuSimons/addition-trans-
 sed -i 's/16384/65536/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 #修正架构
 sed -i "s,boardinfo.system,'ARMv8',g" feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
-#irq_optimize
-mkdir package/base-files/files/usr/bin
-cp -f ../PATCH/irq_optimize.sh package/base-files/files/usr/bin/irq_optimize.sh
-cp -f ../PATCH/irq_optimize package/base-files/files/etc/init.d/irq_optimize
+#adjust_network
+cp -f ../PATCH/adjust_network package/base-files/files/etc/init.d/zzz_adjust_network
 #删除已有配置
 rm -rf .config
 #授予权限
