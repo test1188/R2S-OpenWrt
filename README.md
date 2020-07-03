@@ -17,7 +17,13 @@ LuCI version：19.07
 ### Feature：
 1.O3
 
-2.SSRP ONLY
+2.Only the most basic softwares
+
+3.SFE supported
+
+4.Fullcone NAT supported
+
+5.IPv6 supported
 
 ![](/Screenshots/ss.jpeg)
 
