@@ -54,7 +54,7 @@ popd
 #git clone https://github.com/NateLol/luci-app-beardropper package/luci-app-beardropper
 #sed -i 's/"luci.fs"/"luci.sys".net/g' package/luci-app-beardropper/luasrc/model/cbi/beardropper/setting.lua
 #sed -i '/firewall/d' package/luci-app-beardropper/root/etc/uci-defaults/luci-beardropper
-#JD
+#JD-DailyBonus
 git clone https://github.com/jerrykuku/node-request package/new/node-request
 git clone https://github.com/jerrykuku/luci-app-jd-dailybonus package/new/luci-app-jd-dailybonus
 #arpbind
