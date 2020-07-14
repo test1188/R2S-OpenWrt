@@ -7,7 +7,7 @@ on:
     paths:
       - '.github/workflows/R2S-OpenWrt.yml'
       - 'SEED/config.seed'
-      - 'SCRIPTS/01_get_ready.sh'
+      - 'SCRIPTS/switch'
       - 'SCRIPTS/02_prepare_package.sh'
  # watch:
  #   types: [started]
