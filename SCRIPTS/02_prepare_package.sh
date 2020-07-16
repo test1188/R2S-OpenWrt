@@ -169,7 +169,12 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ramfree 
 #FullCone模块
 git clone -b master --single-branch https://github.com/QiuSimons/openwrt-fullconenat package/fullconenat
 #翻译及部分功能优化
-git clone -b master --single-branch https://github.com/QiuSimons/addition-trans-zh package/lean/lean-translate
+MY_Dir=package/lean/lean-translate
+git clone -b master --single-branch https://github.com/QiuSimons/addition-trans-zh ${MY_Dir}
+sed -i '/uci .* dhcp/d' ${MY_Dir}/files/zzz-default-settings
+sed -i '/chinadnslist\|smartdns\|dockerman/d' ${MY_Dir}/files/zzz-default-settings
+sed -i '/^[[:space:]]*$/d' ${MY_Dir}/files/zzz-default-settings
+unset MY_Dir
 #SFE
 #svn co https://github.com/MeIsReallyBa/Openwrt-sfe-flowoffload-linux-5.4/trunk/shortcut-fe package/new/shortcut-fe
 #svn co https://github.com/project-openwrt/openwrt/branches/18.06-kernel5.4/package/lean/shortcut-fe package/new/shortcut-fe
