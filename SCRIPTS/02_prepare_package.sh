@@ -155,6 +155,10 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/trojan package/le
 svn co https://github.com/project-openwrt/openwrt/trunk/package/lean/tcpping package/lean/tcpping
 #PASSWALL
 #svn co https://github.com/Lienol/openwrt-package/trunk/lienol/luci-app-passwall package/new/luci-app-passwall
+#cp -f ../PATCH/move_passwall_2_services.sh ./package/new/luci-app-passwall/move_passwall_2_services.sh
+#pushd package/new/luci-app-passwall
+#bash move_passwall_2_services.sh
+#popd
 #svn co https://github.com/Lienol/openwrt-package/trunk/package/tcping package/new/tcping
 #svn co https://github.com/Lienol/openwrt-package/trunk/package/trojan-go package/new/trojan-go
 #svn co https://github.com/Lienol/openwrt-package/trunk/package/brook package/new/brook
