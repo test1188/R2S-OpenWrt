@@ -17,12 +17,13 @@ sed -i 's/O2/O3/g' ./rules.mk
 sed -i 's/0/1/g' feeds/packages/utils/irqbalance/files/irqbalance.config
 
 ##必要的patch
+#等待上游修复后使用
+##patch i2c0
+#cp -f ../PATCH/998-rockchip-enable-i2c0-on-NanoPi-R2S.patch ./target/linux/rockchip/patches-5.4/998-rockchip-enable-i2c0-on-NanoPi-R2S.patch
+##patch r8152 led
+#cp -f ../PATCH/991-r8152-Add-module-param-for-customized-LEDs.patch ./target/linux/rockchip/patches-5.4/991-r8152-Add-module-param-for-customized-LEDs.patch
 #patch rk-crypto
 patch -p1 < ../PATCH/kernel_crypto-add-rk3328-crypto-support.patch
-#patch i2c0
-#cp -f ../PATCH/998-rockchip-enable-i2c0-on-NanoPi-R2S.patch ./target/linux/rockchip/patches-5.4/998-rockchip-enable-i2c0-on-NanoPi-R2S.patch
-#patch r8152 led
-cp -f ../PATCH/991-r8152-Add-module-param-for-customized-LEDs.patch ./target/linux/rockchip/patches-5.4/991-r8152-Add-module-param-for-customized-LEDs.patch
 #patch jsonc
 patch -p1 < ../PATCH/use_json_object_new_int64.patch
 #patch dnsmasq
@@ -120,7 +121,10 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autorebo
 #edge主题
 #git clone -b master --single-branch https://github.com/garypang13/luci-theme-edge package/new/luci-theme-edge
 #AdGuard
+#cp -rf ../openwrt-lienol/package/diy/luci-app-adguardhome ./package/new/luci-app-adguardhome
+#cp -rf ../openwrt-lienol/package/diy/adguardhome ./package/new/AdGuardHome
 #git clone -b master --single-branch https://github.com/rufengsuixing/luci-app-adguardhome package/new/luci-app-adguardhome
+#svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ntlf9t/AdGuardHome package/new/AdGuardHome
 #ChinaDNS
 #git clone -b luci --single-branch https://github.com/pexcn/openwrt-chinadns-ng package/new/luci-chinadns-ng
 #git clone -b master --single-branch https://github.com/pexcn/openwrt-chinadns-ng package/new/chinadns-ng
@@ -225,6 +229,9 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/fast-classifier p
 #回滚zstd
 rm -rf ./feeds/packages/utils/zstd
 svn co https://github.com/QiuSimons/Others/trunk/zstd feeds/packages/utils/zstd
+#FRP
+#git clone -b master --single-branch https://github.com/kuoruan/openwrt-frp package/new/openwrt-frp
+#git clone -b master --single-branch https://github.com/kuoruan/luci-app-frpc package/new/luci-app-frpc
 
 ##最后的收尾工作
 #Lets Fuck

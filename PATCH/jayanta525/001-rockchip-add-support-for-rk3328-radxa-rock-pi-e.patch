@@ -1,4 +1,4 @@
-From 12546a0da7d5c4031e8b270b49827e05728f0846 Mon Sep 17 00:00:00 2001
+From faadec7aa2a94bcf0ddb00a731277d272f2dda3c Mon Sep 17 00:00:00 2001
 From: Jayantajit Gogoi <jayanta.gogoi525@gmail.com>
 Date: Thu, 11 Jun 2020 18:26:48 +0000
 Subject: [PATCH] rockchip: add support for rk3328 radxa rock pi e
@@ -24,13 +24,12 @@ Signed-off-by: Jayantajit Gogoi <jayanta.gogoi525@gmail.com>
  .../002-add-rk3328-usb3-driver.patch          | 1424 +++++++++++++++++
  .../003-add-rk3328-rock-pi-e-support.patch    |  420 +++++
  .../004-rk3328_add_idle_state.patch           |   71 +
- .../004-unlock-1512mhz-rk3328.patch           |   16 +
  .../patches-5.4/005-add_hwmon_support.patch   |   92 ++
  .../006-rk3328_add_mmc_reset.patch            |   40 +
  .../patches-5.4/007-add_mmc_poweroff.patch    |   94 ++
  .../rockchip/patches-5.4/008-mmc_rename.patch |   56 +
  .../009-rk3328_add_sdmmc_ext_node.patch       |   34 +
- 25 files changed, 3018 insertions(+), 20 deletions(-)
+ 24 files changed, 3018 insertions(+), 20 deletions(-)
  create mode 100644 package/boot/uboot-rockchip/patches/001-rockchip-Avoid-using-libfdt-with-of-platdata.diff
  create mode 100644 package/boot/uboot-rockchip/patches/002-dm-core-Don-t-include-ofnode-functions-with-of-platdata.diff
  create mode 100644 package/boot/uboot-rockchip/patches/003-spl-Allow-SPL-TPL-to-use-of-platdata-without-libfdt.diff
@@ -43,7 +42,6 @@ Signed-off-by: Jayantajit Gogoi <jayanta.gogoi525@gmail.com>
  create mode 100644 target/linux/rockchip/patches-5.4/002-add-rk3328-usb3-driver.patch
  create mode 100644 target/linux/rockchip/patches-5.4/003-add-rk3328-rock-pi-e-support.patch
  create mode 100644 target/linux/rockchip/patches-5.4/004-rk3328_add_idle_state.patch
- create mode 100644 target/linux/rockchip/patches-5.4/004-unlock-1512mhz-rk3328.patch
  create mode 100644 target/linux/rockchip/patches-5.4/005-add_hwmon_support.patch
  create mode 100644 target/linux/rockchip/patches-5.4/006-rk3328_add_mmc_reset.patch
  create mode 100644 target/linux/rockchip/patches-5.4/007-add_mmc_poweroff.patch
@@ -799,7 +797,7 @@ index 0000000000..df47827128
 +ttyS0::askfirst:/usr/libexec/login.sh
 +tty1::askfirst:/usr/libexec/login.sh
 diff --git a/target/linux/rockchip/armv8/config-5.4 b/target/linux/rockchip/armv8/config-5.4
-index 48b05b432b..526ecd78b6 100644
+index 4f29204dd2..df288b2d18 100644
 --- a/target/linux/rockchip/armv8/config-5.4
 +++ b/target/linux/rockchip/armv8/config-5.4
 @@ -73,7 +73,7 @@ CONFIG_CMA_ALIGNMENT=8
@@ -900,9 +898,9 @@ index 48b05b432b..526ecd78b6 100644
  CONFIG_IRQ_MSI_IOMMU=y
  CONFIG_IRQ_TIME_ACCOUNTING=y
  CONFIG_JBD2=y
-@@ -223,11 +243,13 @@ CONFIG_KEXEC_FILE=y
+@@ -222,11 +242,13 @@ CONFIG_KEXEC_CORE=y
+ CONFIG_KEXEC_FILE=y
  # CONFIG_KEXEC_SIG is not set
- CONFIG_KEYBOARD_GPIO=y
  CONFIG_KSM=y
 +CONFIG_KVM=y
  # CONFIG_LEDS_BRIGHTNESS_HW_CHANGED is not set
@@ -913,8 +911,8 @@ index 48b05b432b..526ecd78b6 100644
 +CONFIG_LEDS_TRIGGER_GPIO=y
  CONFIG_LEDS_TRIGGER_HEARTBEAT=y
  CONFIG_LEDS_TRIGGER_PANIC=y
- # CONFIG_LEDS_TRIGGER_TIMER is not set
-@@ -248,6 +270,8 @@ CONFIG_MDIO_BUS_MUX_GPIO=y
+ CONFIG_LEGACY_PTYS=y
+@@ -246,6 +268,8 @@ CONFIG_MDIO_BUS_MUX_GPIO=y
  CONFIG_MDIO_BUS_MUX_MMIOREG=y
  CONFIG_MDIO_DEVICE=y
  CONFIG_MDIO_GPIO=y
@@ -923,7 +921,7 @@ index 48b05b432b..526ecd78b6 100644
  CONFIG_MEMORY_ISOLATION=y
  CONFIG_MFD_CORE=y
  CONFIG_MFD_RK808=y
-@@ -318,18 +342,23 @@ CONFIG_PCI_DOMAINS_GENERIC=y
+@@ -316,18 +340,23 @@ CONFIG_PCI_DOMAINS_GENERIC=y
  CONFIG_PCI_MSI=y
  CONFIG_PCI_MSI_IRQ_DOMAIN=y
  CONFIG_PCI_STUB=y
@@ -949,7 +947,7 @@ index 48b05b432b..526ecd78b6 100644
  CONFIG_PINCTRL_ROCKCHIP=y
  # CONFIG_PINCTRL_SINGLE is not set
  CONFIG_PL330_DMA=y
-@@ -343,6 +372,9 @@ CONFIG_PM_GENERIC_DOMAINS_OF=y
+@@ -341,6 +370,9 @@ CONFIG_PM_GENERIC_DOMAINS_OF=y
  CONFIG_PM_OPP=y
  CONFIG_POWER_AVS=y
  CONFIG_POWER_SUPPLY_HWMON=y
@@ -959,7 +957,7 @@ index 48b05b432b..526ecd78b6 100644
  CONFIG_PREEMPT=y
  CONFIG_PREEMPTION=y
  CONFIG_PREEMPT_COUNT=y
-@@ -370,6 +402,7 @@ CONFIG_RCU_CPU_STALL_TIMEOUT=21
+@@ -368,6 +400,7 @@ CONFIG_RCU_CPU_STALL_TIMEOUT=21
  # CONFIG_RCU_EXPERT is not set
  CONFIG_RCU_TRACE=y
  # CONFIG_READ_ONLY_THP_FOR_FS is not set
@@ -967,7 +965,7 @@ index 48b05b432b..526ecd78b6 100644
  CONFIG_REGMAP=y
  CONFIG_REGMAP_I2C=y
  CONFIG_REGMAP_IRQ=y
-@@ -388,7 +421,8 @@ CONFIG_ROCKCHIP_IOMMU=y
+@@ -386,7 +419,8 @@ CONFIG_ROCKCHIP_IOMMU=y
  CONFIG_ROCKCHIP_MBOX=y
  CONFIG_ROCKCHIP_PHY=y
  CONFIG_ROCKCHIP_PM_DOMAINS=y
@@ -977,7 +975,7 @@ index 48b05b432b..526ecd78b6 100644
  CONFIG_ROCKCHIP_TIMER=y
  CONFIG_RSEQ=y
  CONFIG_RTC_CLASS=y
-@@ -426,6 +460,11 @@ CONFIG_SERIO_LIBPS2=y
+@@ -424,6 +458,11 @@ CONFIG_SERIO_LIBPS2=y
  CONFIG_SG_POOL=y
  CONFIG_SIMPLE_PM_BUS=y
  CONFIG_SLUB_DEBUG=y
@@ -989,7 +987,7 @@ index 48b05b432b..526ecd78b6 100644
  CONFIG_SPARSEMEM=y
  CONFIG_SPARSEMEM_EXTREME=y
  CONFIG_SPARSEMEM_MANUAL=y
-@@ -483,7 +522,10 @@ CONFIG_TYPEC_TCPM=y
+@@ -481,7 +520,10 @@ CONFIG_TYPEC_TCPM=y
  CONFIG_UNINLINE_SPIN_UNLOCK=y
  CONFIG_USB=y
  CONFIG_USB_COMMON=y
@@ -1000,7 +998,7 @@ index 48b05b432b..526ecd78b6 100644
  CONFIG_USB_DWC3_HOST=y
  CONFIG_USB_DWC3_OF_SIMPLE=y
  CONFIG_USB_EHCI_HCD=y
-@@ -502,8 +544,14 @@ CONFIG_USB_ULPI_VIEWPORT=y
+@@ -500,8 +542,14 @@ CONFIG_USB_ULPI_VIEWPORT=y
  CONFIG_USB_XHCI_HCD=y
  CONFIG_USB_XHCI_PLATFORM=y
  # CONFIG_USERIO is not set
@@ -1015,7 +1013,7 @@ index 48b05b432b..526ecd78b6 100644
  CONFIG_VM_EVENT_COUNTERS=y
  CONFIG_VT=y
  CONFIG_VT_CONSOLE=y
-@@ -516,3 +564,21 @@ CONFIG_XZ_DEC_ARMTHUMB=y
+@@ -514,3 +562,21 @@ CONFIG_XZ_DEC_ARMTHUMB=y
  CONFIG_XZ_DEC_BCJ=y
  CONFIG_ZLIB_DEFLATE=y
  CONFIG_ZLIB_INFLATE=y
@@ -3103,28 +3101,6 @@ index 0000000000..1a62e29e1c
 + 		l2: l2-cache0 {
 + 			compatible = "cache";
 + 		};
-diff --git a/target/linux/rockchip/patches-5.4/004-unlock-1512mhz-rk3328.patch b/target/linux/rockchip/patches-5.4/004-unlock-1512mhz-rk3328.patch
-new file mode 100644
-index 0000000000..7d67233d62
---- /dev/null
-+++ b/target/linux/rockchip/patches-5.4/004-unlock-1512mhz-rk3328.patch
-@@ -0,0 +1,16 @@
-+diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-+index 8dabc6e29..d58c893a6 100644
-+--- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-++++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-+@@ -125,6 +125,11 @@
-+ 			opp-microvolt = <1300000>;
-+ 			clock-latency-ns = <40000>;
-+ 		};
-++		opp-1512000000 {
-++			opp-hz = /bits/ 64 <1512000000>;
-++			opp-microvolt = <1450000>;
-++			clock-latency-ns = <40000>;
-++		};
-+ 	};
-+ 
-+ 	amba {
 diff --git a/target/linux/rockchip/patches-5.4/005-add_hwmon_support.patch b/target/linux/rockchip/patches-5.4/005-add_hwmon_support.patch
 new file mode 100644
 index 0000000000..5d95ea66a6
