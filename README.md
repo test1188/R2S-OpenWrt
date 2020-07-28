@@ -1,5 +1,7 @@
 ## Firmware of NanoPi R2S Based on Original OpenWRT
 
+### OpenWrt Mainline supported NanoPi R2S in 28 July 2020
+
 Release in:
 https://github.com/nicksun98/R2S-OpenWrt/releases
 
