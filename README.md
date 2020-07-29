@@ -49,6 +49,6 @@ SSRP contains SSRP
 
 5.IPv6 supported
 
-![](/Screenshots/ss.jpeg)
+![](/Screenshots/newversion.jpeg)
 
 ## Thanks to all friends in NanoPi R2S Club
