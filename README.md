@@ -14,8 +14,14 @@ The firmwares __DO NOT__ contain argon theme and material theme, JD_DailyBonus c
 To Update JD_DailyBonus:
 ```
 wget --no-check-certificate https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js -O /usr/share/jd-dailybonus/JD_DailyBonus.js
+
+uci set jd-dailybonus.@global[0].version='version number'
+
+uci commit
+
+/etc/config/jd-dailybonus restart
 ```
-and alter `/etc/config/jd-dailybonus` version number.
+Remember to alter the version number, such as 1.33
 
 To start service:
 ```
