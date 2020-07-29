@@ -21,7 +21,7 @@ uci commit
 
 /etc/config/jd-dailybonus restart
 ```
-Remember to alter the version number, such as 1.33
+__Remember to alter the version number__, such as 1.33
 
 To start service:
 ```
