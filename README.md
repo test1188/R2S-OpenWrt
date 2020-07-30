@@ -25,7 +25,7 @@ __Remember to alter the version number__, such as 1.33
 
 To start service:
 ```
-sh /usr/share/jd-dailybonus/app.sh
+sh /usr/share/jd-dailybonus/newapp.sh
 ```
 
 ### Version Informations:
