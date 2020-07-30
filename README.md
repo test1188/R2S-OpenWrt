@@ -18,8 +18,6 @@ wget --no-check-certificate https://raw.githubusercontent.com/NobyDa/Script/mast
 uci set jd-dailybonus.@global[0].version='version number'
 
 uci commit
-
-/etc/config/jd-dailybonus restart
 ```
 __Remember to alter the version number__, such as 1.33
 
