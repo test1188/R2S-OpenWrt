@@ -6,6 +6,8 @@ rm -f ./feeds.conf.default
 wget https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/feeds.conf.default
 wget -P include/ https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/include/scons.mk
 patch -p1 < ../PATCH/0001-tools-add-upx-ucl-support.patch
+#SWAP LAN WAN
+patch -p1 < ../PATCH/0001-target-rockchip-swap-nanopi-r2s-lan-wan-port.patch
 #remove annoying snapshot tag
 sed -i 's,SNAPSHOT,,g' include/version.mk
 sed -i 's,snapshots,,g' package/base-files/image-config.in
@@ -56,8 +58,6 @@ cp -f ../PATCH/999-RK3328-enable-1512mhz-opp.patch ./target/linux/rockchip/patch
 #IRQ
 rm -rf ./target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
 cp -f ../PATCH/40-net-smp-affinity ./target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
-#SWAP LAN WAN
-git apply ../PATCH/swap-LAN-WAN.patch
 
 ##获取额外package
 #更换Node版本
