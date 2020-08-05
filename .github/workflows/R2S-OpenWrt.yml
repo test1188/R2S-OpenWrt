@@ -20,6 +20,11 @@ jobs:
     steps:
     - name: Clone Repository
       uses: actions/checkout@v1
+    - name: Show CPU Model and Free Space
+      run: |
+        echo -e "Total CPU cores\t: $(nproc)"
+        cat /proc/cpuinfo | grep 'model name'
+        free -h
     - name: Init build dependencies
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -65,6 +70,10 @@ jobs:
       run: |
         cd openwrt
         /bin/bash 04_remove_upx.sh
+    - name: Add ACL
+      run: |
+        cd openwrt
+        /bin/bash 05_create_acl_for_luci.sh -a
     - name: Make Config
       run: |
         cd openwrt
@@ -92,7 +101,7 @@ jobs:
       run: |
         df -h
         cd openwrt/bin/targets/rockchip/armv8
-        /bin/bash ../../../../../SCRIPTS/05_cleaning.sh
+        /bin/bash ../../../../../SCRIPTS/06_cleaning.sh
     - name: Print Disk Space After
       run: df -h
     - name: Upload Firmwares
