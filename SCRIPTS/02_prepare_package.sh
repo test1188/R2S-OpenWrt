@@ -101,7 +101,8 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-arpbind 
 #AutoCore
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/autocore package/lean/autocore
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/coremark package/lean/coremark
-sed -i 's,-DMULTIT,-Ofast -DMULTIT,g' package/lean/coremark/Makefile
+mkdir package/lean/coremark/patches
+wget -P package/lean/coremark/patches/ https://raw.githubusercontent.com/QiuSimons/Others/master/coremark.patch
 #迅雷快鸟
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-xlnetacc package/lean/luci-app-xlnetacc
 #DDNS
@@ -144,8 +145,8 @@ rm -rf ./feeds/packages/net/kcptun
 rm -rf ./feeds/packages/net/shadowsocks-libev
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shadowsocksr-libev package/lean/shadowsocksr-libev
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/pdnsd-alt package/lean/pdnsd
-#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray package/lean/v2ray
-svn co https://github.com/nicksun98/lede/trunk/package/lean/v2ray package/lean/v2ray
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray package/lean/v2ray
+#svn co https://github.com/nicksun98/lede/trunk/package/lean/v2ray package/lean/v2ray
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/kcptun package/lean/kcptun
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray-plugin package/lean/v2ray-plugin
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
@@ -161,15 +162,15 @@ svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev pack
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/trojan package/lean/trojan
 svn co https://github.com/project-openwrt/openwrt/trunk/package/lean/tcpping package/lean/tcpping
 #PASSWALL
-#svn co https://github.com/Lienol/openwrt-package/trunk/lienol/luci-app-passwall package/new/luci-app-passwall
+#svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-passwall package/new/luci-app-passwall
 #cp -f ../PATCH/new/script/move_2_services.sh ./package/new/luci-app-passwall/move_2_services.sh
 #pushd package/new/luci-app-passwall
 #bash move_2_services.sh
 #popd
-#svn co https://github.com/Lienol/openwrt-package/trunk/package/tcping package/new/tcping
-#svn co https://github.com/Lienol/openwrt-package/trunk/package/trojan-go package/new/trojan-go
-#svn co https://github.com/Lienol/openwrt-package/trunk/package/brook package/new/brook
-#svn co https://github.com/Lienol/openwrt-package/trunk/package/trojan-plus package/new/trojan-plus
+#svn co https://github.com/xiaorouji/openwrt-package/trunk/package/tcping package/new/tcping
+#svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-go package/new/trojan-go
+#svn co https://github.com/xiaorouji/openwrt-package/trunk/package/brook package/new/brook
+#svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-plus package/new/trojan-plus
 #订阅转换
 #svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ctcgfw/subconverter package/new/subconverter
 #svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ctcgfw/jpcre2 package/new/jpcre2
