@@ -17,7 +17,7 @@ sed -i 's/O2/O3/g' ./rules.mk
 #更新feed
 ./scripts/feeds update -a && ./scripts/feeds install -a
 #irqbalance
-sed -i 's/0/1/g' feeds/packages/utils/irqbalance/files/irqbalance.config
+#sed -i 's/0/1/g' feeds/packages/utils/irqbalance/files/irqbalance.config
 
 ##必要的patch
 #fix sd-card
@@ -58,8 +58,8 @@ popd
 cp -f ../PATCH/new/main/999-RK3328-enable-1512mhz-opp.patch ./target/linux/rockchip/patches-5.4/999-RK3328-enable-1512mhz-opp.patch
 #cp -f ../PATCH/new/main/999-unlock-1608mhz-rk3328.patch ./target/linux/rockchip/patches-5.4/999-unlock-1608mhz-rk3328.patch
 #IRQ
-rm -rf ./target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
-cp -f ../PATCH/new/script/40-net-smp-affinity ./target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
+#rm -rf ./target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
+#cp -f ../PATCH/new/script/40-net-smp-affinity ./target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
 
 ##获取额外package
 #更换Node版本
@@ -251,6 +251,8 @@ svn co https://github.com/QiuSimons/Others/trunk/zstd feeds/packages/utils/zstd
 
 #crypto
 echo '
+CPU_FREQ=y
+CPU_FREQ_GOV_ONDEMAND=y
 CONFIG_REGULATOR_GPIO=y
 CONFIG_ARM64_CRYPTO=y
 CONFIG_CRYPTO_AES_ARM64=y
