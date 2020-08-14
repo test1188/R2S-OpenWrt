@@ -21,7 +21,7 @@ sed -i 's/O2/O3/g' ./rules.mk
 
 ##必要的patch
 #fix sd-card
-cp -f ../PATCH/new/main/997-nanopi-r2s-improve-boot-failed.patch ./package/boot/uboot-rockchip/patches/997-nanopi-r2s-improve-boot-failed.patch
+#cp -f ../PATCH/new/main/997-nanopi-r2s-improve-boot-failed.patch ./package/boot/uboot-rockchip/patches/997-nanopi-r2s-improve-boot-failed.patch
 #patch i2c0
 #cp -f ../PATCH/new/main/998-rockchip-enable-i2c0-on-NanoPi-R2S.patch ./target/linux/rockchip/patches-5.4/998-rockchip-enable-i2c0-on-NanoPi-R2S.patch
 #patch rk-crypto
@@ -60,10 +60,8 @@ cp -f ../PATCH/new/main/999-RK3328-enable-1512mhz-opp.patch ./target/linux/rockc
 #IRQ
 #rm -rf ./target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
 #cp -f ../PATCH/new/script/40-net-smp-affinity ./target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
-sed -i "s,2 "eth0",8 "eth0",g" target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
-sed -i "s,4 "eth1",1 "eth1",g" target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
-sed -i '/;;/i\set_interface_core 2 "ff160000" "ff160000.i2c"' target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
-sed -i '/;;/i\set_interface_core 4 "ff150000" "ff150000.i2c"' target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
+sed -i '/;;/i\set_interface_core 8 "ff160000" "ff160000.i2c"' target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
+sed -i '/;;/i\set_interface_core 1 "ff150000" "ff150000.i2c"' target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
 
 ##获取额外package
 #更换Node版本
