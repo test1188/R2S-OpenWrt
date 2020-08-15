@@ -222,12 +222,12 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ramfree 
 cp -rf ../openwrt-lienol/package/network/fullconenat ./package/network/fullconenat
 #git clone -b master --single-branch https://github.com/QiuSimons/openwrt-fullconenat package/fullconenat
 #翻译及部分功能优化
-MY_Dir=package/lean/lean-translate
-git clone -b master --single-branch https://github.com/QiuSimons/addition-trans-zh ${MY_Dir}
-sed -i '/uci .* dhcp/d' ${MY_Dir}/files/zzz-default-settings
-sed -i '/chinadnslist\|smartdns\|dockerman/d' ${MY_Dir}/files/zzz-default-settings
-sed -i '/^[[:space:]]*$/d' ${MY_Dir}/files/zzz-default-settings
-unset MY_Dir
+MY_Var=package/lean/lean-translate
+git clone -b master --single-branch https://github.com/QiuSimons/addition-trans-zh ${MY_Var}
+sed -i '/uci .* dhcp/d' ${MY_Var}/files/zzz-default-settings
+sed -i '/chinadnslist\|ddns\|upnp\|openclash\|dockerman/d' ${MY_Var}/files/zzz-default-settings
+sed -i '/^[[:space:]]*$/d' ${MY_Var}/files/zzz-default-settings
+unset MY_Var
 #SFE
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe package/new/shortcut-fe
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/fast-classifier package/new/fast-classifier
