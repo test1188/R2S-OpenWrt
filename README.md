@@ -49,6 +49,15 @@ SSRP contains SSRP
 
 5.IPv6 supported
 
+```
+uci set dhcp.lan.ra='hybrid'
+uci set dhcp.lan.ndp='hybrid'
+uci set dhcp.lan.dhcpv6='hybrid'
+uci set dhcp.lan.ra_management='1'
+uci del dhcp.@dnsmasq[0].rebind_protection='1'
+uci commit dhcp
+```
+
 ![](/Screenshots/newversion.jpeg)
 
 ## Thanks to all friends in NanoPi R2S Club
