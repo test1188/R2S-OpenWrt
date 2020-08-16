@@ -1,6 +1,6 @@
 #!/bin/bash
 
-: '
+if false;then
 git clone -b master https://git.openwrt.org/openwrt/staging/blocktrron.git openwrt
 cd openwrt
 git config --local user.email "action@github.com" && git config --local user.name "GitHub Action"
@@ -12,7 +12,7 @@ git rebase --skip
 git rebase --skip
 git rebase --skip
 cd ..
-'
+fi
 
 git clone -b master https://git.openwrt.org/openwrt/openwrt.git openwrt
 git clone https://github.com/Lienol/openwrt.git openwrt-lienol
