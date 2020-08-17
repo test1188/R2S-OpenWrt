@@ -1,9 +1,9 @@
 #!/bin/bash
 clear
 #Kernel
-wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3285.patch | patch -p1
-wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3277.patch | patch -p1
-wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3300.patch | patch -p1
+#wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3285.patch | patch -p1
+#wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3277.patch | patch -p1
+#wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3300.patch | patch -p1
 ##准备工作
 #使用19.07的feed源
 rm -f ./feeds.conf.default
@@ -30,6 +30,8 @@ sed -i 's/O2/O3/g' ./rules.mk
 #cp -f ../PATCH/new/main/998-rockchip-enable-i2c0-on-NanoPi-R2S.patch ./target/linux/rockchip/patches-5.4/998-rockchip-enable-i2c0-on-NanoPi-R2S.patch
 #patch rk-crypto
 patch -p1 < ../PATCH/new/main/kernel_crypto-add-rk3328-crypto-support.patch
+#luci network
+patch -p1 < ../PATCH/new/main/luci_network-add-packet-steering.patch
 #patch jsonc
 patch -p1 < ../PATCH/new/package/use_json_object_new_int64.patch
 #patch dnsmasq
@@ -125,7 +127,7 @@ wget -P package/lean/coremark/patches/ https://raw.githubusercontent.com/QiuSimo
 #oled
 #git clone -b master --single-branch https://github.com/NateLol/luci-app-oled package/new/luci-app-oled
 #网易云解锁
-git clone -b master --single-branch https://github.com/project-openwrt/luci-app-unblockneteasemusic package/new/UnblockNeteaseMusic
+#git clone -b master --single-branch https://github.com/project-openwrt/luci-app-unblockneteasemusic package/new/UnblockNeteaseMusic
 #定时重启
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot package/lean/luci-app-autoreboot
 #argon主题
@@ -146,7 +148,7 @@ svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/
 #svn co https://github.com/nicksun98/Others/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
 rm -rf ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/ssrurl.htm
 wget -P package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr https://raw.githubusercontent.com/QiuSimons/Others/master/luci-app-ssr-plus/luasrc/view/shadowsocksr/ssrurl.htm
-sed -i 's/143/143,5222/' package/lean/luci-app-ssr-plus/root/etc/init.d/shadowsocksr
+sed -i 's/143/143,25,5222/' package/lean/luci-app-ssr-plus/root/etc/init.d/shadowsocksr
 #rm -rf ./package/lean/luci-app-ssr-plus/root/etc/init.d/shadowsocksr
 #wget -P package/lean/luci-app-ssr-plus/root/etc/init.d https://raw.githubusercontent.com/nicksun98/Others/master/luci-app-ssr-plus-177-1/root/etc/init.d/shadowsocksr
 #SSRP依赖
