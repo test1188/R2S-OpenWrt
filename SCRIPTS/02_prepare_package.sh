@@ -1,9 +1,7 @@
 #!/bin/bash
 clear
 #Kernel
-#wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3285.patch | patch -p1
-#wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3277.patch | patch -p1
-#wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3300.patch | patch -p1
+wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3277.patch | patch -p1
 ##准备工作
 #使用19.07的feed源
 rm -f ./feeds.conf.default
@@ -91,6 +89,8 @@ svn co https://github.com/nxhack/openwrt-node-packages/trunk/node-serialport-bin
 #更换Golang版本
 rm -rf ./feeds/packages/lang/golang
 svn co https://github.com/openwrt/packages/trunk/lang/golang feeds/packages/lang/golang
+rm -rf ./feeds/packages/lang/golang/golang
+svn co https://github.com/project-openwrt/packages/trunk/lang/golang/golang feeds/packages/lang/golang/golang
 #beardropper
 #git clone https://github.com/NateLol/luci-app-beardropper package/luci-app-beardropper
 #sed -i 's/"luci.fs"/"luci.sys".net/g' package/luci-app-beardropper/luasrc/model/cbi/beardropper/setting.lua
@@ -232,7 +232,7 @@ cp -rf ../openwrt-lienol/package/network/fullconenat ./package/network/fullconen
 MY_Var=package/lean/lean-translate
 git clone -b master --single-branch https://github.com/QiuSimons/addition-trans-zh ${MY_Var}
 sed -i '/uci .* dhcp/d' ${MY_Var}/files/zzz-default-settings
-sed -i '/chinadnslist\|ddns\|upnp\|openclash\|dockerman/d' ${MY_Var}/files/zzz-default-settings
+sed -i '/chinadnslist\|ddns\|upnp\|netease\|openclash\|dockerman/d' ${MY_Var}/files/zzz-default-settings
 sed -i '/^[[:space:]]*$/d' ${MY_Var}/files/zzz-default-settings
 unset MY_Var
 #SFE
