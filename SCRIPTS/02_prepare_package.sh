@@ -1,6 +1,7 @@
 #!/bin/bash
 clear
 #Kernel
+wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3320.patch | patch -p1
 wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3277.patch | patch -p1
 ##准备工作
 #使用19.07的feed源
@@ -89,8 +90,9 @@ svn co https://github.com/nxhack/openwrt-node-packages/trunk/node-serialport-bin
 #更换Golang版本
 rm -rf ./feeds/packages/lang/golang
 svn co https://github.com/openwrt/packages/trunk/lang/golang feeds/packages/lang/golang
-#rm -rf ./feeds/packages/lang/golang/golang
-#svn co https://github.com/project-openwrt/packages/trunk/lang/golang/golang feeds/packages/lang/golang/golang
+rm -rf ./feeds/packages/lang/golang/.svn
+rm -rf ./feeds/packages/lang/golang/golang
+svn co https://github.com/project-openwrt/packages/trunk/lang/golang/golang feeds/packages/lang/golang/golang
 #beardropper
 #git clone https://github.com/NateLol/luci-app-beardropper package/luci-app-beardropper
 #sed -i 's/"luci.fs"/"luci.sys".net/g' package/luci-app-beardropper/luasrc/model/cbi/beardropper/setting.lua
@@ -200,6 +202,7 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ramfree 
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata package/lean/luci-app-netdata
 #OpenClash
 #svn co https://github.com/vernesong/OpenClash/branches/master/luci-app-openclash package/new/luci-app-openclash
+#git clone -b master --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
 #SeverChan
 #git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan
 #svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/utils/iputils package/network/utils/iputils
@@ -217,8 +220,6 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ramfree 
 #svn co https://github.com/openwrt/packages/trunk/utils/libnetwork package/utils/libnetwork
 #svn co https://github.com/openwrt/packages/trunk/utils/tini package/utils/tini
 #svn co https://github.com/openwrt/packages/trunk/utils/runc package/utils/runc
-#rm -rf ./package/lang/golang
-#svn co https://github.com/openwrt/packages/trunk/lang/golang package/lang/golang
 #补全部分依赖（实际上并不会用到
 #svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/utils/fuse package/utils/fuse
 #svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/services/samba36 package/network/services/samba36
