@@ -34,7 +34,7 @@ The Latest Edition of Snapshot （The day of the latest action）
 
 LuCI version：19.07
 
-Doge contains SSRP, JD-DailyBonus, UnblockNeteaseMusic
+Doge contains SSRP and JD-DailyBonus
 
 SSRP contains SSRP
 
