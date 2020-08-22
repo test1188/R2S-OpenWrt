@@ -10,7 +10,7 @@ Login IP：192.168.1.1
 
 Password：None
 
-Swap the ethernet ports of lan wan
+~~Swap the ethernet ports of lan wan~~
 
 The firmwares __DO NOT__ contain argon theme and material theme, JD_DailyBonus cannot be updated in Luci.  
 To Update JD_DailyBonus:

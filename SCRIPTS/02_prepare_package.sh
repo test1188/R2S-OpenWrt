@@ -1,9 +1,10 @@
 #!/bin/bash
 clear
 #Kernel
-wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3320.patch | patch -p1
+#wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3320.patch | patch -p1
 wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3277.patch | patch -p1
-wget -O- https://github.com/project-openwrt/openwrt/commit/abb0ba46c021595d49c35609b70e473e6c79d127.patch | patch -p1
+#Crypto（test
+#wget -O- https://github.com/AmadeusGhost/lede/commit/3e668936669080ca6f3fcea5534b94d00103291a.patch | patch -p1
 ##准备工作
 #使用19.07的feed源
 rm -f ./feeds.conf.default
@@ -11,7 +12,7 @@ wget https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/feeds.conf.
 wget -P include/ https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/include/scons.mk
 patch -p1 < ../PATCH/new/main/0001-tools-add-upx-ucl-support.patch
 #SWAP LAN WAN
-patch -p1 < ../PATCH/new/main/0001-target-rockchip-swap-nanopi-r2s-lan-wan-port.patch
+#patch -p1 < ../PATCH/new/main/0001-target-rockchip-swap-nanopi-r2s-lan-wan-port.patch
 #remove annoying snapshot tag
 sed -i 's,SNAPSHOT,,g' include/version.mk
 sed -i 's,snapshots,,g' package/base-files/image-config.in
@@ -70,6 +71,9 @@ sed -i '/;;/i\set_interface_core 8 "ff160000" "ff160000.i2c"' target/linux/rockc
 sed -i '/;;/i\set_interface_core 1 "ff150000" "ff150000.i2c"' target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
 
 ##获取额外package
+#更换curl
+rm -rf ./package/network/utils/curl
+svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/utils/curl package/network/utils/curl
 #更换Node版本
 rm -rf ./feeds/packages/lang/node
 svn co https://github.com/nxhack/openwrt-node-packages/trunk/node feeds/packages/lang/node
@@ -249,8 +253,8 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/fast-classifier p
 #bash move_2_services.sh
 #popd
 #回滚zstd
-rm -rf ./feeds/packages/utils/zstd
-svn co https://github.com/QiuSimons/Others/trunk/zstd feeds/packages/utils/zstd
+#rm -rf ./feeds/packages/utils/zstd
+#svn co https://github.com/QiuSimons/Others/trunk/zstd feeds/packages/utils/zstd
 #UPNP（回滚以解决某些沙雕设备的沙雕问题
 #rm -rf ./feeds/packages/net/miniupnpd
 #svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
@@ -262,6 +266,8 @@ svn co https://github.com/QiuSimons/Others/trunk/zstd feeds/packages/utils/zstd
 #git clone https://github.com/lwz322/luci-app-frps.git package/lean/luci-app-frps
 #git clone https://github.com/kuoruan/luci-app-frpc.git package/lean/luci-app-frpc
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/frp package/feeds/packages/frp
+#disable-rk3328-eth-offloading
+#wget -P target/linux/rockchip/armv8/base-files/etc/hotplug.d/iface https://raw.githubusercontent.com/friendlyarm/friendlywrt/master-v19.07.1/target/linux/rockchip-rk3328/base-files/etc/hotplug.d/iface/12-disable-rk3328-eth-offloading
 
 ##最后的收尾工作
 #Lets Fuck
