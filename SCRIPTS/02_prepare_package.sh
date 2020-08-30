@@ -7,7 +7,7 @@ patch -p1 < ../PATCH/new/main/Support-hardware-random-number-generator-for-RK332
 #Crypto（test
 #wget -O- https://github.com/AmadeusGhost/lede/commit/3e668936669080ca6f3fcea5534b94d00103291a.patch | patch -p1
 ##准备工作
-#实验性回滚FW3
+#回滚FW3
 rm -rf ./package/network/config/firewall
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/config/firewall package/network/config/firewall
 #使用19.07的feed源
@@ -219,9 +219,9 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ramfree 
 #git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan
 #svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/utils/iputils package/network/utils/iputils
 #SmartDNS
-svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ntlf9t/smartdns package/new/smartdns
+#svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ntlf9t/smartdns package/new/smartdns
 #git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns package/new/luci-app-smartdns
-svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ntlf9t/luci-app-smartdns package/new/luci-app-smartdns
+#svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ntlf9t/luci-app-smartdns package/new/luci-app-smartdns
 #上网APP过滤
 #git clone -b master --single-branch https://github.com/destan19/OpenAppFilter package/new/OpenAppFilter
 #Docker
