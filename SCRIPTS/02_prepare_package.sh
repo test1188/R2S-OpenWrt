@@ -234,11 +234,13 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ramfree 
 #svn co https://github.com/openwrt/packages/trunk/utils/tini package/utils/tini
 #svn co https://github.com/openwrt/packages/trunk/utils/runc package/utils/runc
 #补全部分依赖（实际上并不会用到
-#svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/utils/fuse package/utils/fuse
-#svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/services/samba36 package/network/services/samba36
-#svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/libs/libconfig package/libs/libconfig
-#rm -rf ./feeds/packages/utils/collectd
-#svn co https://github.com/openwrt/packages/trunk/utils/collectd feeds/packages/utils/collectd
+svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/utils/fuse package/utils/fuse
+svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/services/samba36 package/network/services/samba36
+svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/libs/libconfig package/libs/libconfig
+svn co https://github.com/openwrt/packages/trunk/libs/nghttp2 package/libs/nghttp2
+svn co https://github.com/openwrt/packages/trunk/libs/libcap-ng package/libs/libcap-ng
+rm -rf ./feeds/packages/utils/collectd
+svn co https://github.com/openwrt/packages/trunk/utils/collectd feeds/packages/utils/collectd
 #FullCone模块
 cp -rf ../openwrt-lienol/package/network/fullconenat ./package/network/fullconenat
 #git clone -b master --single-branch https://github.com/QiuSimons/openwrt-fullconenat package/fullconenat
