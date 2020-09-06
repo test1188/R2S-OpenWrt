@@ -27,7 +27,7 @@ rm -rf ./package/network/config/firewall
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/config/firewall package/network/config/firewall
 #使用19.07的feed源
 rm -f ./feeds.conf.default
-wget https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/feeds.conf.default
+wget https://raw.githubusercontent.com/nicksun98/openwrt/openwrt-19.07/feeds.conf.default
 wget -P include/ https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/include/scons.mk
 patch -p1 < ../PATCH/new/main/0001-tools-add-upx-ucl-support.patch
 #SWAP LAN WAN
