@@ -41,6 +41,8 @@ sed -i 's/O2/O3/g' ./rules.mk
 ./scripts/feeds update -a && ./scripts/feeds install -a
 #irqbalance
 #sed -i 's/0/1/g' feeds/packages/utils/irqbalance/files/irqbalance.config
+#RNGD
+sed -i 's/-f/-f -i/g' feeds/packages/utils/rng-tools/files/rngd.init
 
 ##必要的patch
 #fix sd-card
@@ -263,7 +265,7 @@ cp -rf ../openwrt-lienol/package/network/fullconenat ./package/network/fullconen
 MY_Var=package/lean/lean-translate
 git clone -b master --single-branch https://github.com/QiuSimons/addition-trans-zh ${MY_Var}
 sed -i '/uci .* dhcp/d' ${MY_Var}/files/zzz-default-settings
-sed -i '/chinadnslist\|ddns\|upnp\|netease\|openclash\|dockerman/d' ${MY_Var}/files/zzz-default-settings
+sed -i '/chinadnslist\|ddns\|openwrt_luci\|upnp\|netease\|openclash\|dockerman/d' ${MY_Var}/files/zzz-default-settings
 sed -i "4a uci set luci.main.lang='en'" ${MY_Var}/files/zzz-default-settings
 sed -i '5a uci commit luci' ${MY_Var}/files/zzz-default-settings
 sed -i '/^[[:space:]]*$/d' ${MY_Var}/files/zzz-default-settings
