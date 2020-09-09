@@ -52,7 +52,7 @@ sed -i 's/-f/-f -i/g' feeds/packages/utils/rng-tools/files/rngd.init
 #patch rk-crypto
 patch -p1 < ../PATCH/new/main/kernel_crypto-add-rk3328-crypto-support.patch
 #luci network
-patch -p1 < ../PATCH/new/main/luci_network-add-packet-steering.patch
+#patch -p1 < ../PATCH/new/main/luci_network-add-packet-steering.patch
 #patch jsonc
 patch -p1 < ../PATCH/new/package/use_json_object_new_int64.patch
 #patch dnsmasq
@@ -203,6 +203,7 @@ svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev pack
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/trojan package/lean/trojan
 #svn co https://github.com/project-openwrt/openwrt/trunk/package/lean/tcpping package/lean/tcpping
 svn co https://github.com/fw876/helloworld/trunk/tcping package/lean/tcping
+svn co https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy
 #PASSWALL
 #svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-passwall package/new/luci-app-passwall
 #cp -f ../PATCH/new/script/move_2_services.sh ./package/new/luci-app-passwall/move_2_services.sh
