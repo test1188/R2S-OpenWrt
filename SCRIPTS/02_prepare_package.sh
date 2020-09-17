@@ -19,7 +19,7 @@ CONFIG_PREEMPTION=y
 ' >> ./target/linux/rockchip/config-default
 }
 #HW-RNG
-patch -p1 < ../PATCH/new/main/Support-hardware-random-number-generator-for-RK3328.patch
+#patch -p1 < ../PATCH/new/main/Support-hardware-random-number-generator-for-RK3328.patch
 #Crypto（test
 #wget -O- https://github.com/AmadeusGhost/lede/commit/3e668936669080ca6f3fcea5534b94d00103291a.patch | patch -p1
 ##准备工作
@@ -44,7 +44,7 @@ sed -i 's/O2/O3/g' ./rules.mk
 #irqbalance
 #sed -i 's/0/1/g' feeds/packages/utils/irqbalance/files/irqbalance.config
 #RNGD
-sed -i 's/-f/-f -i/g' feeds/packages/utils/rng-tools/files/rngd.init
+#sed -i 's/-f/-f -i/g' feeds/packages/utils/rng-tools/files/rngd.init
 
 ##必要的patch
 #fix sd-card
@@ -161,6 +161,7 @@ wget -P package/lean/coremark/patches/ https://raw.githubusercontent.com/QiuSimo
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot package/lean/luci-app-autoreboot
 #argon主题
 #git clone -b master --single-branch https://github.com/jerrykuku/luci-theme-argon package/new/luci-theme-argon
+#git clone -b master --single-branch https://github.com/jerrykuku/luci-app-argon-config package/new/luci-app-argon-config
 #edge主题
 #git clone -b master --single-branch https://github.com/garypang13/luci-theme-edge package/new/luci-theme-edge
 #AdGuard
@@ -188,8 +189,8 @@ rm -rf ./feeds/packages/net/kcptun
 rm -rf ./feeds/packages/net/shadowsocks-libev
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shadowsocksr-libev package/lean/shadowsocksr-libev
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/pdnsd-alt package/lean/pdnsd
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray package/lean/v2ray
-#svn co https://github.com/nicksun98/lede/trunk/package/lean/v2ray package/lean/v2ray
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray package/lean/v2ray
+svn co https://github.com/nicksun98/lede/trunk/package/lean/v2ray package/lean/v2ray
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/kcptun package/lean/kcptun
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray-plugin package/lean/v2ray-plugin
 #svn co https://github.com/nicksun98/lede/trunk/package/lean/v2ray-plugin package/lean/v2ray-plugin
