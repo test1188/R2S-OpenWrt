@@ -96,6 +96,7 @@ jobs:
         df -h
         cd openwrt
         let make_process=$(nproc)+1
+        git config --global user.email "you@example.com" && git config --global user.name "Your Name"
         git commit
         git revert bda6f6572be630bcf9a1c8a429e40d8a53033af5
         make -j${make_process} V=s || make -j${make_process} V=s || make -j1 V=s
