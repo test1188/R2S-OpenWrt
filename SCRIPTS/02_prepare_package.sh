@@ -1,7 +1,6 @@
 #!/bin/bash
 clear
 #Kernel
-wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3277.patch | patch -p1
 #wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3178.patch | patch -p1
 #wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3432.patch | patch -p1
 notExce(){
@@ -290,9 +289,12 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/fast-classifier p
 #回滚zstd
 #rm -rf ./feeds/packages/utils/zstd
 #svn co https://github.com/QiuSimons/Others/trunk/zstd feeds/packages/utils/zstd
-#UPNP（回滚以解决某些沙雕设备的沙雕问题
+#UPNP（ Revert )
 #rm -rf ./feeds/packages/net/miniupnpd
 #svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
+#KMS(Cannot be used illegally)
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd package/lean/luci-app-vlmcsd
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd package/lean/vlmcsd
 #frp
 #rm -f ./feeds/luci/applications/luci-app-frps
 #rm -f ./feeds/luci/applications/luci-app-frpc
