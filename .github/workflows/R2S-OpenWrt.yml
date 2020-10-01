@@ -95,7 +95,7 @@ jobs:
       run: |
         df -h
         cd openwrt
-        make -j${make_process} V=s || make -j${make_process} V=s || make -j1 V=s
+        make -j3 -s || make -j1 V=s
     - name: Cleaning
       run: |
         df -h
